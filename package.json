@@ -12,6 +12,11 @@
       "lefthook"
     ]
   },
+  "dependencies": {
+    "citty": "0.1.6",
+    "consola": "3.4.0",
+    "jiti": "2.4.2"
+  },
   "devDependencies": {
     "@commitlint/cli": "19.7.1",
     "@commitlint/config-conventional": "19.7.1",
@@ -28,6 +33,7 @@
   "scripts": {
     "lint": "eslint \"**/*.{js,cjs,mjs,ts,cts,mts}\"",
     "format": "prettier \"**/!(*.md)\" -wu",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "aws-mfa": "jiti src/cli"
   }
 }
