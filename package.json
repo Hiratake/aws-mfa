@@ -4,11 +4,23 @@
   "description": "A management tool for AWS credentials when using MFA",
   "license": "MIT",
   "type": "module",
+  "exports": {
+    "types": "./dist/index.d.mts",
+    "default": "./dist/index.mjs"
+  },
+  "types": "./dist/index.d.mts",
+  "bin": {
+    "aws-mfa": "./dist/cli.mjs"
+  },
+  "files": [
+    "dist"
+  ],
   "volta": {
     "node": "22.14.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
+      "esbuild",
       "lefthook"
     ]
   },
@@ -29,9 +41,12 @@
     "lefthook": "1.11.2",
     "prettier": "3.5.3",
     "typescript": "5.8.2",
-    "typescript-eslint": "8.26.0"
+    "typescript-eslint": "8.26.0",
+    "unbuild": "3.5.0"
   },
   "scripts": {
+    "build": "unbuild",
+    "prepack": "unbuild",
     "lint": "eslint \"**/*.{js,cjs,mjs,ts,cts,mts}\"",
     "format": "prettier \"**/!(*.md)\" -wu",
     "typecheck": "tsc",
