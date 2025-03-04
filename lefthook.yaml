@@ -1,0 +1,26 @@
+# https://lefthook.dev/configuration/
+
+# pre-push
+pre-push:
+  commands:
+    typecheck:
+      run: pnpm typecheck
+
+# pre-commit
+pre-commit:
+  parallel: true
+  commands:
+    eslint:
+      glob: '*.{js,cjs,mjs,ts,cts,mts}'
+      run: pnpm eslint --fix {staged_files}
+      stage_fixed: true
+    prettier:
+      glob: '*.{js,cjs,mjs,ts,cts,mts,json,yml,yaml}'
+      run: pnpm prettier -w {staged_files}
+      stage_fixed: true
+
+# commit-msg
+commit-msg:
+  commands:
+    commitlint:
+      run: pnpm commitlint --edit {1}
