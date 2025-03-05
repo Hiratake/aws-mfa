@@ -112,7 +112,10 @@ const getProfiles = async () => {
   if (stderr) {
     throw new Error(stderr)
   }
-  return stdout.split('\n').filter((profile) => profile)
+  return stdout
+    .split('\n')
+    .filter((profile) => profile)
+    .filter((profile) => !/-mfa$/.test(profile))
 }
 
 const getNewProfileName = (
