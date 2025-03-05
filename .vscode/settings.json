@@ -5,6 +5,7 @@
   "editor.tabSize": 2,
   "files.eol": "\n",
   "files.insertFinalNewline": true,
+  "git.branchProtection": ["main"],
   "typescript.tsdk": "node_modules/typescript/lib",
   "[javascript][typescript][json][yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
