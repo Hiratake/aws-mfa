@@ -34,12 +34,15 @@
     "@commitlint/cli": "19.7.1",
     "@commitlint/config-conventional": "19.7.1",
     "@eslint/js": "9.21.0",
+    "@semantic-release/changelog": "6.0.3",
+    "@semantic-release/git": "10.0.1",
     "@types/node": "22.13.9",
     "eslint": "9.21.0",
     "eslint-config-prettier": "10.0.2",
     "globals": "16.0.0",
     "lefthook": "1.11.2",
     "prettier": "3.5.3",
+    "semantic-release": "24.2.3",
     "typescript": "5.8.2",
     "typescript-eslint": "8.26.0",
     "unbuild": "3.5.0"
@@ -48,6 +51,7 @@
     "build": "unbuild",
     "prepack": "unbuild",
     "lint": "eslint \"**/*.{js,cjs,mjs,ts,cts,mts}\"",
+    "lint:fix": "eslint \"**/*.{js,cjs,mjs,ts,cts,mts}\" --fix",
     "format": "prettier \"**/!(*.md)\" -wu",
     "typecheck": "tsc",
     "aws-mfa": "jiti src/cli"
