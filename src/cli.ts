@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { exit } from 'node:process'
 import { defineCommand, runMain } from 'citty'
 import { consola } from 'consola'
 import { description, name, version } from '../package.json'
@@ -33,21 +34,36 @@ const main = defineCommand({
       default: '',
       alias: 'c',
     },
+    quiet: {
+      type: 'boolean',
+      description: 'Run in quiet mode, suppressing informational messages.',
+      default: false,
+      alias: 'q',
+    },
   },
   run: async ({ args }) => {
-    consola.start('Starting multi-factor authentication...')
+    if (!args.quiet) {
+      consola.start('Starting multi-factor authentication...')
+    }
 
     const { expiration, profile } = await mfa({
       profile: args.profile,
       region: args.region,
       serialNumber: args.serialNumber,
       code: args.code,
+      quiet: args.quiet,
     }).catch((err: unknown) => {
-      throw err
+      if (!args.quiet) {
+        throw err
+      } else {
+        exit(1)
+      }
     })
 
-    consola.box(`Profile: ${profile}\nExpiration: ${expiration}`)
-    consola.success('Authentication successful.')
+    if (!args.quiet) {
+      consola.box(`Profile: ${profile}\nExpiration: ${expiration}`)
+      consola.success('Authentication successful.')
+    }
   },
 })
 
