@@ -29,8 +29,8 @@ const main = defineCommand({
     },
     code: {
       type: 'string',
-      description: '',
-      default: 'Use a specific 6-digit MFA code.',
+      description: 'Use a specific 6-digit MFA code.',
+      default: '',
       alias: 'c',
     },
   },
