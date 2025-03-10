@@ -7,6 +7,8 @@ export type MFAOptions = {
   serialNumber: string
   /** MFAコード */
   code: string
+  /** メッセージを出力しない */
+  quiet: boolean
 }
 
 export type MFAReturn = {
