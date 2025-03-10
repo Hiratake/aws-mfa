@@ -7,6 +7,12 @@ export const mfa = async (options: MFAOptions): Promise<MFAReturn> => {
   const profiles = await getProfiles()
   /** 使用するプロファイル名 */
   let profile = options.profile
+  /** リージョン */
+  let region = options.region
+  /** シリアルナンバー */
+  let serialNumber = options.serialNumber
+  /** MFAコード */
+  let code = options.code
 
   if (profile) {
     // 指定されたプロファイルが存在するか確認
@@ -24,61 +30,67 @@ export const mfa = async (options: MFAOptions): Promise<MFAReturn> => {
 
   /** 作成するプロファイル名 */
   const mfaProfile = getNewProfileName(profile)
-  /** リージョン */
-  const region = await (async () => {
-    try {
-      return await getRegion(profile)
-    } catch {
-      // リージョンを設定
-      const input = await consola.prompt('Enter your region', {
-        type: 'text',
-        placeholder: 'ap-northeast-1',
-      })
-      if (!input) {
-        throw new Error('Invalid region.')
+
+  if (!region) {
+    region = await (async () => {
+      try {
+        return await getRegion(profile)
+      } catch {
+        // リージョンを設定
+        const input = await consola.prompt('Enter your region', {
+          type: 'text',
+          placeholder: 'ap-northeast-1',
+        })
+        if (!input) {
+          throw new Error('Invalid region.')
+        }
+        const { stderr } = await exec(
+          `aws configure set region "${input}" --profile "${profile}"`,
+        )
+        if (stderr) {
+          throw new Error(stderr)
+        }
+        return input.trim()
       }
-      const { stderr } = await exec(
-        `aws configure set region "${input}" --profile "${profile}"`,
-      )
-      if (stderr) {
-        throw new Error(stderr)
+    })()
+  }
+
+  if (!serialNumber) {
+    serialNumber = await (async () => {
+      try {
+        return await getMFASerialNumber(profile)
+      } catch {
+        // シリアルナンバーを設定
+        const input = await consola.prompt('Enter your MFA serial number', {
+          type: 'text',
+          placeholder: 'arn:aws:iam::123456789012:mfa/user',
+        })
+        if (!/^arn:aws:iam::\d{12}:mfa\//.test(input)) {
+          throw new Error('Invalid MFA serial number.')
+        }
+        const { stderr } = await exec(
+          `aws configure set mfa_serial "${input}" --profile "${profile}"`,
+        )
+        if (stderr) {
+          throw new Error(stderr)
+        }
+        return input.trim()
+      }
+    })()
+  }
+
+  if (!code) {
+    code = await (async () => {
+      const input = await consola.prompt('Enter your MFA code', {
+        type: 'text',
+        placeholder: '123456',
+      })
+      if (!/^\d{6}$/.test(input)) {
+        throw new Error('Invalid MFA code.')
       }
       return input.trim()
-    }
-  })()
-  /** シリアルナンバー */
-  const serialNumber = await (async () => {
-    try {
-      return await getMFASerialNumber(profile)
-    } catch {
-      // シリアルナンバーを設定
-      const input = await consola.prompt('Enter your MFA serial number', {
-        type: 'text',
-        placeholder: 'arn:aws:iam::123456789012:mfa/user',
-      })
-      if (!/^arn:aws:iam::\d{12}:mfa\//.test(input)) {
-        throw new Error('Invalid MFA serial number.')
-      }
-      const { stderr } = await exec(
-        `aws configure set mfa_serial "${input}" --profile "${profile}"`,
-      )
-      if (stderr) {
-        throw new Error(stderr)
-      }
-      return input.trim()
-    }
-  })()
-  /** コード */
-  const code = await (async () => {
-    const input = await consola.prompt('Enter your MFA code', {
-      type: 'text',
-      placeholder: '123456',
-    })
-    if (!/^\d{6}$/.test(input)) {
-      throw new Error('Invalid MFA code.')
-    }
-    return input.trim()
-  })()
+    })()
+  }
 
   /** AWS STS による一時的な認証情報 */
   const token = await getToken(profile, serialNumber, code)
@@ -107,6 +119,10 @@ export const mfa = async (options: MFAOptions): Promise<MFAReturn> => {
   return { profile: mfaProfile, expiration: token.Expiration }
 }
 
+/**
+ * プロファイルの一覧を取得する
+ * @returns ~/.aws/credentials に設定されているプロファイルの配列
+ */
 const getProfiles = async () => {
   const { stderr, stdout } = await exec('aws configure list-profiles')
   if (stderr) {
@@ -118,12 +134,22 @@ const getProfiles = async () => {
     .filter((profile) => !/-mfa$/.test(profile))
 }
 
+/**
+ * 新たに作成するプロファイル名を生成する
+ * @param profile プロファイル名
+ * @returns プロファイル名に `-mfa` を付与したプロファイル名
+ */
 const getNewProfileName = (
   profile: MFAOptions['profile'],
 ): MFAOptions['profile'] => {
   return `${profile}-mfa`
 }
 
+/**
+ * 指定したプロファイルに設定されたリージョンを取得する
+ * @param profile プロファイル名
+ * @returns 設定済みのリージョン
+ */
 const getRegion = async (profile: MFAOptions['profile']): Promise<string> => {
   const { stderr, stdout } = await exec(
     `aws configure get region --profile "${profile}" --output text`,
@@ -134,6 +160,11 @@ const getRegion = async (profile: MFAOptions['profile']): Promise<string> => {
   return stdout.trim()
 }
 
+/**
+ * 指定したプロファイルに設定されたシリアルナンバーを取得する
+ * @param profile プロファイル名
+ * @returns 設定済みのシリアルナンバー
+ */
 const getMFASerialNumber = async (
   profile: MFAOptions['profile'],
 ): Promise<string> => {
@@ -146,6 +177,13 @@ const getMFASerialNumber = async (
   return stdout.trim()
 }
 
+/**
+ * AWS STS から一時的な認証情報を取得する
+ * @param profile 使用するプロファイル名
+ * @param serialNumber シリアルナンバー
+ * @param code MFAコード
+ * @returns 一時的な認証情報
+ */
 const getToken = async (
   profile: MFAOptions['profile'],
   serialNumber: string,
