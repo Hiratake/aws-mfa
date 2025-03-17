@@ -18,7 +18,7 @@
   "files": [
     "dist"
   ],
-  "packageManager": "pnpm@10.6.2",
+  "packageManager": "pnpm@10.6.4",
   "volta": {
     "node": "22.14.0"
   },
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "citty": "0.1.6",
-    "consola": "3.4.0",
+    "consola": "3.4.1",
     "jiti": "2.4.2",
     "util": "0.12.5"
   },
