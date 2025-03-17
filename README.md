@@ -1,6 +1,6 @@
 # aws-mfa
 
-[![ci](https://github.com/Hiratake/aws-mfa/actions/workflows/ci.yaml/badge.svg)](https://github.com/Hiratake/social-share/actions/workflows/ci.yaml)
+[![ci](https://github.com/Hiratake/aws-mfa/actions/workflows/ci.yaml/badge.svg)](https://github.com/Hiratake/aws-mfa/actions/workflows/ci.yaml)
 ![version](https://img.shields.io/npm/v/%40hiratake%2Faws-mfa)
 ![license](https://img.shields.io/npm/l/%40hiratake%2Faws-mfa)
 
