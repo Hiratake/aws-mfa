@@ -1,3 +1,16 @@
+# [1.1.0](https://github.com/Hiratake/aws-mfa/compare/v1.0.1...v1.1.0) (2025-03-17)
+
+
+### Bug Fixes
+
+* 説明文がデフォルト値に指定されている問題を修正 ([#16](https://github.com/Hiratake/aws-mfa/issues/16)) ([5b1f3db](https://github.com/Hiratake/aws-mfa/commit/5b1f3dbe6e540db9ac2d0f99835d6d2abb0c6f28))
+
+
+### Features
+
+* メッセージを出力しないモードを追加 ([#17](https://github.com/Hiratake/aws-mfa/issues/17)) ([3a5ed8e](https://github.com/Hiratake/aws-mfa/commit/3a5ed8e821885af5c098ab9e8a6aabd1bc70732d))
+* 入力項目をオプションで渡せるように機能を追加 ([#14](https://github.com/Hiratake/aws-mfa/issues/14)) ([a88892e](https://github.com/Hiratake/aws-mfa/commit/a88892e9896e32ef2c1288a43c15528183ad7aeb))
+
 ## [1.0.1](https://github.com/Hiratake/aws-mfa/compare/v1.0.0...v1.0.1) (2025-03-05)
 
 
