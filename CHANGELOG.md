@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/Hiratake/aws-mfa/compare/v1.1.1...v1.1.2) (2025-04-14)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#23](https://github.com/Hiratake/aws-mfa/issues/23)) ([68ad67f](https://github.com/Hiratake/aws-mfa/commit/68ad67f6082a2123b57c13d86ef0095b6dc0a8bd))
+
 ## [1.1.1](https://github.com/Hiratake/aws-mfa/compare/v1.1.0...v1.1.1) (2025-03-24)
 
 
