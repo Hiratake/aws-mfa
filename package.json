@@ -18,7 +18,7 @@
   "files": [
     "dist"
   ],
-  "packageManager": "pnpm@10.12.1",
+  "packageManager": "pnpm@10.12.2",
   "volta": {
     "node": "22.14.0"
   },
@@ -45,10 +45,10 @@
     "eslint-config-prettier": "10.1.5",
     "globals": "16.2.0",
     "lefthook": "1.11.14",
-    "prettier": "3.5.3",
+    "prettier": "3.6.0",
     "semantic-release": "24.2.5",
     "typescript": "5.8.3",
-    "typescript-eslint": "8.34.0",
+    "typescript-eslint": "8.34.1",
     "unbuild": "3.5.0"
   },
   "scripts": {
