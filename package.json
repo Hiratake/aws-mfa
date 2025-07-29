@@ -6,6 +6,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hiratake/aws-mfa.git"
+  },
   "type": "module",
   "exports": {
     "types": "./dist/index.d.mts",
