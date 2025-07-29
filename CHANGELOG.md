@@ -6,6 +6,14 @@
 * **deps:** update all non-major dependencies ([#55](https://github.com/Hiratake/aws-mfa/issues/55)) ([5972a0d](https://github.com/Hiratake/aws-mfa/commit/5972a0d3a92dfa40b344ae46bf503462ebdb3c93))
 * npmjsに認証バッジを追加する ([#54](https://github.com/Hiratake/aws-mfa/issues/54)) ([109fa19](https://github.com/Hiratake/aws-mfa/commit/109fa192b3c79ba490dc60cda2e545240b9254ac))
 
+## [1.1.3](https://github.com/Hiratake/aws-mfa/compare/v1.1.2...v1.1.3) (2025-07-29)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#55](https://github.com/Hiratake/aws-mfa/issues/55)) ([5972a0d](https://github.com/Hiratake/aws-mfa/commit/5972a0d3a92dfa40b344ae46bf503462ebdb3c93))
+* npmjsに認証バッジを追加する ([#54](https://github.com/Hiratake/aws-mfa/issues/54)) ([109fa19](https://github.com/Hiratake/aws-mfa/commit/109fa192b3c79ba490dc60cda2e545240b9254ac))
+
 ## [1.1.2](https://github.com/Hiratake/aws-mfa/compare/v1.1.1...v1.1.2) (2025-04-14)
 
 
