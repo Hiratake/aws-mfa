@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/Hiratake/aws-mfa/compare/v1.1.3...v1.1.4) (2025-10-20)
+
+
+### Bug Fixes
+
+* **deps:** 依存関係を更新 ([#75](https://github.com/Hiratake/aws-mfa/issues/75)) ([176573c](https://github.com/Hiratake/aws-mfa/commit/176573c180b11ebd73f4b6b021a43c422b4872d3))
+
 ## [1.1.3](https://github.com/Hiratake/aws-mfa/compare/v1.1.2...v1.1.3) (2025-07-29)
 
 

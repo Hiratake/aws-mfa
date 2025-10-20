@@ -1,6 +1,6 @@
 {
   "name": "@hiratake/aws-mfa",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "AWS MFA credential management tool",
   "license": "MIT",
   "publishConfig": {
