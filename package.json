@@ -22,7 +22,7 @@
   "files": [
     "dist"
   ],
-  "packageManager": "pnpm@10.18.3",
+  "packageManager": "pnpm@10.26.1",
   "volta": {
     "node": "22.20.0"
   },
@@ -33,20 +33,20 @@
     "util": "0.12.5"
   },
   "devDependencies": {
-    "@commitlint/cli": "20.1.0",
-    "@commitlint/config-conventional": "20.0.0",
-    "@eslint/js": "9.37.0",
+    "@commitlint/cli": "20.2.0",
+    "@commitlint/config-conventional": "20.2.0",
+    "@eslint/js": "9.39.2",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
-    "@types/node": "22.18.10",
-    "eslint": "9.37.0",
+    "@types/node": "22.19.3",
+    "eslint": "9.39.2",
     "eslint-config-prettier": "10.1.8",
-    "globals": "16.4.0",
+    "globals": "16.5.0",
     "lefthook": "2.0.12",
-    "prettier": "3.6.2",
-    "semantic-release": "25.0.1",
+    "prettier": "3.7.4",
+    "semantic-release": "25.0.2",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.46.1",
+    "typescript-eslint": "8.50.0",
     "unbuild": "3.6.1"
   },
   "scripts": {
