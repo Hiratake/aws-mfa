@@ -35,11 +35,11 @@
   "devDependencies": {
     "@commitlint/cli": "20.2.0",
     "@commitlint/config-conventional": "20.2.0",
-    "@eslint/js": "9.39.2",
+    "@eslint/js": "10.0.1",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
     "@types/node": "24.10.9",
-    "eslint": "9.39.2",
+    "eslint": "10.0.2",
     "eslint-config-prettier": "10.1.8",
     "globals": "16.5.0",
     "lefthook": "2.0.12",
